@@ -1,29 +1,22 @@
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 
 public class Measurement {
-    private LocalDate datum;
-    private LocalTime uhrzeit;
+    private LocalDateTime datum;
     private String kennzeichen;
     private int erlaubt;
     private double gemessen;
 
-    public Measurement(LocalDate datum, LocalTime uhrzeit, String kennzeichen, int erlaubt, double gemessen) {
+    public Measurement(LocalDateTime datum, String kennzeichen, int erlaubt, double gemessen) {
         this.datum = datum;
-        this.uhrzeit = uhrzeit;
         this.kennzeichen = kennzeichen;
         this.erlaubt = erlaubt;
         this.gemessen = gemessen;
     }
 
-    public LocalDate getDatum() {
+    public LocalDateTime getDatum() {
         return datum;
-    }
-
-    public LocalTime getUhrzeit() {
-        return uhrzeit;
     }
 
     public String getKennzeichen() {

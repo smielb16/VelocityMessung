@@ -1,3 +1,6 @@
+
+import java.time.LocalDateTime;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +13,7 @@
  */
 public class VelocityGUI extends javax.swing.JFrame {
     private VelocityTableModel model = new VelocityTableModel();
+    private VelocityDialog dlg = new VelocityDialog(this, true);
     /**
      * Creates new form GUI
      */
@@ -28,8 +32,31 @@ public class VelocityGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        mMain = new javax.swing.JMenu();
+        mAdd = new javax.swing.JMenuItem();
+        mDelete = new javax.swing.JMenuItem();
+        mAvg = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableOut = new javax.swing.JTable();
+
+        mMain.setText("Menu");
+
+        mAdd.setText("Hinzufügen");
+        mAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mAddActionPerformed(evt);
+            }
+        });
+        mMain.add(mAdd);
+
+        mDelete.setText("Löschen");
+        mMain.add(mDelete);
+
+        mAvg.setText("Durchschnitt");
+        mMain.add(mAvg);
+
+        jPopupMenu1.add(mMain);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,6 +71,7 @@ public class VelocityGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableOut.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(tableOut);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -59,6 +87,14 @@ public class VelocityGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAddActionPerformed
+        dlg.setVisible(true);
+        if(dlg.IsOK()){
+            Measurement m = dlg.getMeasurement();
+            model.add(m);
+        }
+    }//GEN-LAST:event_mAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -97,7 +133,12 @@ public class VelocityGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem mAdd;
+    private javax.swing.JMenuItem mAvg;
+    private javax.swing.JMenuItem mDelete;
+    private javax.swing.JMenu mMain;
     private javax.swing.JTable tableOut;
     // End of variables declaration//GEN-END:variables
 }
