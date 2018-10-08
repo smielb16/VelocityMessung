@@ -1,5 +1,6 @@
 
 import java.awt.Component;
+import java.io.File;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 
@@ -8,14 +9,16 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author elisc
  */
 public class VelocityGUI extends javax.swing.JFrame {
+
     private VelocityTableModel model = new VelocityTableModel();
     private VelocityDialog dlg = new VelocityDialog(this, true);
+    private File f = new File("./data.bin");
+
     /**
      * Creates new form GUI
      */
@@ -40,6 +43,8 @@ public class VelocityGUI extends javax.swing.JFrame {
         mAdd = new javax.swing.JMenuItem();
         mDelete = new javax.swing.JMenuItem();
         mAvg = new javax.swing.JMenuItem();
+        mLoad = new javax.swing.JMenuItem();
+        mSave = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableOut = new javax.swing.JTable();
 
@@ -68,6 +73,22 @@ public class VelocityGUI extends javax.swing.JFrame {
             }
         });
         mMain.add(mAvg);
+
+        mLoad.setText("Laden");
+        mLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mLoadActionPerformed(evt);
+            }
+        });
+        mMain.add(mLoad);
+
+        mSave.setText("Speichern");
+        mSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mSaveActionPerformed(evt);
+            }
+        });
+        mMain.add(mSave);
 
         jPopupMenu1.add(mMain);
 
@@ -103,7 +124,7 @@ public class VelocityGUI extends javax.swing.JFrame {
 
     private void mAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAddActionPerformed
         dlg.setVisible(true);
-        if(dlg.IsOK()){
+        if (dlg.IsOK()) {
             Measurement m = dlg.getMeasurement();
             model.add(m);
         }
@@ -116,6 +137,23 @@ public class VelocityGUI extends javax.swing.JFrame {
     private void mAvgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAvgActionPerformed
         JOptionPane.showMessageDialog(null, model.averageViolation());
     }//GEN-LAST:event_mAvgActionPerformed
+
+    private void mSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mSaveActionPerformed
+        try {
+            model.save(f);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_mSaveActionPerformed
+
+    private void mLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mLoadActionPerformed
+        try {
+            model.load(f);
+        } catch (Exception ex) {
+
+        }
+    }//GEN-LAST:event_mLoadActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -159,7 +197,9 @@ public class VelocityGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem mAdd;
     private javax.swing.JMenuItem mAvg;
     private javax.swing.JMenuItem mDelete;
+    private javax.swing.JMenuItem mLoad;
     private javax.swing.JMenu mMain;
+    private javax.swing.JMenuItem mSave;
     private javax.swing.JTable tableOut;
     // End of variables declaration//GEN-END:variables
 }
