@@ -32,7 +32,7 @@ public class Measurement {
     }
     
     public double berechneUebertretung(){
-        return gemessen - (double) erlaubt;
+        return ((gemessen - (double) erlaubt) > 0 ? (gemessen - (double) erlaubt) : 0);
     }
     
 }

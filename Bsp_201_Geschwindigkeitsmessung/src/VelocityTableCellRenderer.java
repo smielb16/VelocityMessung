@@ -48,6 +48,10 @@ public class VelocityTableCellRenderer implements TableCellRenderer{
                 label.setText("" + v);
                 break;
         }
+        label.setForeground(Color.black);
+        if(isSelected){
+            label.setBackground(Color.lightGray);
+        }
         label.setOpaque(true);
         return label;
     }

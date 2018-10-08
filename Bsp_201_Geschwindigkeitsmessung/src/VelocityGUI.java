@@ -1,5 +1,7 @@
 
+import java.awt.Component;
 import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +23,7 @@ public class VelocityGUI extends javax.swing.JFrame {
         initComponents();
         this.tableOut.setModel(model);
         tableOut.setDefaultRenderer(Object.class, new VelocityTableCellRenderer());
+        model.add(new Measurement(LocalDateTime.now(), "TEST", 0, 0.0));
     }
 
     /**
@@ -51,9 +54,19 @@ public class VelocityGUI extends javax.swing.JFrame {
         mMain.add(mAdd);
 
         mDelete.setText("Löschen");
+        mDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mDeleteActionPerformed(evt);
+            }
+        });
         mMain.add(mDelete);
 
         mAvg.setText("Durchschnitt");
+        mAvg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mAvgActionPerformed(evt);
+            }
+        });
         mMain.add(mAvg);
 
         jPopupMenu1.add(mMain);
@@ -95,6 +108,14 @@ public class VelocityGUI extends javax.swing.JFrame {
             model.add(m);
         }
     }//GEN-LAST:event_mAddActionPerformed
+
+    private void mDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDeleteActionPerformed
+        model.delete(tableOut.getSelectedRows());
+    }//GEN-LAST:event_mDeleteActionPerformed
+
+    private void mAvgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAvgActionPerformed
+        JOptionPane.showMessageDialog(null, model.averageViolation());
+    }//GEN-LAST:event_mAvgActionPerformed
 
     /**
      * @param args the command line arguments

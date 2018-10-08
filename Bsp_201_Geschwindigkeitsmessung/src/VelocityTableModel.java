@@ -14,6 +14,21 @@ public class VelocityTableModel extends AbstractTableModel{
         fireTableRowsInserted(measurements.size()-1, measurements.size()-1);
     }
     
+    public void delete(int[] indices){
+        for(int i = indices.length-1; i >= 0; i--){
+            measurements.remove(indices[i]);
+            fireTableRowsDeleted(indices[i], indices[i]);
+        }
+    }
+    
+    public double averageViolation(){
+        double x = 0;
+        for (Measurement m : measurements) {
+            x += m.berechneUebertretung();
+        }
+        return x / measurements.size();
+    }
+    
     @Override
     public String getColumnName(int column){
         return COLNAMES[column];

@@ -25,11 +25,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="L&#xf6;schen"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mDeleteActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mAvg">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Durchschnitt"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mAvgActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
